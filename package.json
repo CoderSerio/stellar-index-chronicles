@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "pnpm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
@@ -14,5 +15,8 @@
     "@astrojs/sitemap": "^3.7.0",
     "astro": "^5.17.1",
     "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
