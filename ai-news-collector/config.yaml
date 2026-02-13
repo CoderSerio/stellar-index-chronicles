@@ -1,0 +1,66 @@
+# AI趋势新闻收集使徒配置文件
+
+# 输出目录设置
+output_dir: './output'
+cache_dir: './cache'
+
+# 更新频率设置
+update_interval_hours: 1                    # RSS检查间隔（小时）
+daily_summary_time: '09:00'                # 每日简报生成时间（24小时制）
+weekly_summary_day: 'monday'               # 周报生成日（monday-sunday）
+monthly_summary_day: 1                     # 月报生成日（1-31）
+
+# 文章处理设置
+max_articles_per_source: 10                # 每个RSS源最多获取文章数
+min_score_threshold: 3.5                   # 最低评分阈值（0-5分）
+max_daily_articles: 20                     # 每日最多输出文章数
+
+# 通知渠道设置
+notification_channels:
+  - file                                   # 保存到文件
+  - telegram                               # 发送到Telegram（需要配置token）
+  # - email                                # 发送邮件（需要配置SMTP）
+  # - discord                              # 发送到Discord（需要配置webhook）
+
+# Telegram通知配置（如果启用）
+telegram:
+  bot_token: ''                           # Telegram Bot Token
+  chat_id: ''                             # 接收消息的Chat ID
+
+# 邮件通知配置（如果启用）
+email:
+  smtp_server: ''                         # SMTP服务器地址
+  smtp_port: 587                          # SMTP端口
+  username: ''                            # 邮箱用户名
+  password: ''                            # 邮箱密码（或应用密码）
+  from_email: ''                          # 发件人邮箱
+  to_emails: []                           # 收件人邮箱列表
+
+# Discord通知配置（如果启用）
+discord:
+  webhook_url: ''                         # Discord Webhook URL
+
+# 缓存和性能设置
+enable_cache: true                        # 启用缓存避免重复获取
+cache_ttl_hours: 24                       # 缓存有效期（小时）
+request_timeout: 30                       # HTTP请求超时（秒）
+max_retries: 3                            # 请求失败重试次数
+
+# 分类设置
+categories:
+  - name: "商业应用"
+    keywords: ["企业", "商业", "ROI", "成本", "收入", "市场", "客户"]
+  - name: "技术研发"
+    keywords: ["技术", "算法", "模型", "框架", "开源", "代码", "API"]
+  - name: "研发提效"
+    keywords: ["效率", "工具", "自动化", "MLOps", "部署", "监控", "调试"]
+  - name: "行业动态"
+    keywords: ["融资", "收购", "合作", "政策", "法规", "标准", "会议"]
+
+# 语言设置
+primary_language: "zh"                    # 主要语言（zh/en）
+secondary_languages: ["en"]               # 次要语言列表
+
+# 调试设置
+debug_mode: false                         # 调试模式（输出详细日志）
+log_level: "INFO"                         # 日志级别（DEBUG/INFO/WARNING/ERROR）
