@@ -47,10 +47,37 @@ description: "探索Hugging Face最新发布的OpenEnv框架和Transformers.js v
 
 下面是一个基于Transformers.js的实时对象检测演示。点击"上传图像"按钮，选择一张图片，即可在浏览器中看到AI模型实时识别图像中的物体！
 
+<details>
+<summary>查看示例代码</summary>
+
+```javascript
+import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.2.1';
+
+// 创建对象检测管道
+const detector = await pipeline("object-detection", "Xenova/detr-resnet-50");
+
+// 处理上传的图像
+async function detect(img) {
+  const output = await detector(img.src, {
+    threshold: 0.5,
+    percentage: true,
+  });
+  output.forEach(renderBox);
+}
+```
+
+</details>
+
 <div class="transformers-demo">
   <label class="custom-file-upload">
     <input id="file-upload" type="file" accept="image/*" />
-    <img src="https://huggingface.co/datasets/Xenova/transformers.js-docs/resolve/main/upload-icon.png" alt="Upload icon" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M14 2V8H20" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16 13H8" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16 17H8" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M10 9H8" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     上传图像
   </label>
   <div id="image-container"></div>
@@ -138,23 +165,32 @@ function renderBox({ box, label }) {
   max-width: 600px;
   margin: 2rem auto;
   padding: 1rem;
-  border: 2px dashed #ccc;
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
   text-align: center;
+  background: #fafafa;
 }
 
 .custom-file-upload {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 0.5rem 1rem;
-  background: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
 }
 
 .custom-file-upload:hover {
-  background: #e0e0e0;
+  background: #f5f5f5;
+  border-color: #999;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .custom-file-upload input[type="file"] {
@@ -164,13 +200,19 @@ function renderBox({ box, label }) {
 #image-container {
   position: relative;
   margin: 1rem 0;
-  min-height: 200px;
+  min-height: 150px;
+  max-height: 300px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #fff;
 }
 
 #image-container img {
   max-width: 100%;
+  max-height: 300px;
   height: auto;
   display: block;
+  margin: 0 auto;
 }
 
 .bounding-box {
@@ -181,20 +223,56 @@ function renderBox({ box, label }) {
 
 .bounding-box-label {
   position: absolute;
-  top: -24px;
+  top: -20px;
   left: 0;
   background: #333;
   color: white;
   padding: 2px 6px;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 11px;
   white-space: nowrap;
+  font-weight: 500;
 }
 
 #status {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   font-style: italic;
   color: #666;
+  font-size: 13px;
+  min-height: 16px;
+}
+
+details {
+  margin: 1.5rem 0;
+  background: #2d2d2d;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+summary {
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  user-select: none;
+}
+
+details[open] summary {
+  margin-bottom: 0.5rem;
+}
+
+code {
+  background: #2d2d2d !important;
+  color: #f8f8f2 !important;
+  padding: 0 !important;
+  border-radius: 4px !important;
+  display: block;
+  overflow-x: auto;
+}
+
+pre {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 </style>
 
