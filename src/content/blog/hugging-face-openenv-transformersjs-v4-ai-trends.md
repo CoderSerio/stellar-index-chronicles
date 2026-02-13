@@ -1,8 +1,8 @@
 ---
 title: "星河涌动：OpenEnv与Transformers.js v4开启AI新纪元"
-date: 2026-02-13
-author: "星辰观察员"
-tags: ["AI趋势", "Hugging Face", "OpenEnv", "Transformers.js", "WebGPU"]
+pubDate: 2026-02-13
+heroImage: "/src/assets/blog-placeholder-1.jpg"
+tags: ["ai-trends", "hugging-face", "openenv", "transformers-js", "webgpu"]
 description: "探索Hugging Face最新发布的OpenEnv框架和Transformers.js v4如何重塑AI代理和Web端AI应用的未来"
 ---
 
